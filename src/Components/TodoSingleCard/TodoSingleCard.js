@@ -8,7 +8,7 @@ const TodoSingleCard = ({ task }) => {
     const handleDelete = id => {
         const confirm = window.confirm('Are you sure?');
         if (confirm) {
-            fetch(`https://rocky-falls-42167.herokuapp.com/tasks/${id}`, {
+            fetch(`https://blooming-reaches-53709.herokuapp.com/tasks/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -25,9 +25,9 @@ const TodoSingleCard = ({ task }) => {
     }
 
     const handleComplete = id => {
-        const newSelected = !selected
+        const newSelected = !selected;
         const newSelectedObj = { newSelected };
-        fetch(`https://rocky-falls-42167.herokuapp.com/tasks/${id}`, {
+        fetch(`https://blooming-reaches-53709.herokuapp.com/tasks/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -36,16 +36,15 @@ const TodoSingleCard = ({ task }) => {
         })
             .then(res => res.json())
             .then(data => {
-
                 toast.success('Item Restok successfully')
             })
     }
 
     return (
-        <div className='shadow-md w-1/2 mx-auto py-10'>
+        <div className='shadow-md w-1/2 mx-auto py-10 my-10'>
             <div className=''>
-                <h1 className={selected ? "line-through" : ""}>{name}</h1>
-                <p>{details}</p>
+                <h1 className={selected ? "line-through text-2xl" : "text-2xl"}>{name}</h1>
+                <p className='text-md mb-5'>{details}</p>
             </div>
             <button onClick={() => handleComplete(_id)} className='btn btn-info mr-10 text-white'>COMPLETE</button>
             <button onClick={() => handleDelete(_id)} className='btn btn-secondary ml-10'>DELETE</button>
